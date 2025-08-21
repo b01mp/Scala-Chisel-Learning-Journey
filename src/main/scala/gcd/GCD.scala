@@ -3,7 +3,7 @@
 package gcd
 
 import chisel3._
-
+import chisel3.stage.ChiselStage
 /**
   * Compute GCD using subtraction method.
   * Subtracts the smaller from the larger until register y is zero.
@@ -31,4 +31,8 @@ class GCD extends Module {
 
   io.outputGCD := x
   io.outputValid := y === 0.U
+}
+
+object GCDMain extends App {
+  (new ChiselStage).emitVerilog(new GCD)
 }
